@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Hammadzafar05\MobileBottomNav\MobileBottomNav;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use lockscreen\FilamentLockscreen\Lockscreen;
@@ -78,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
                     ->enablePlugin()
                     ->enableIdleTimeout()
                     ->enableRateLimit(),
+                MobileBottomNav::make(),
                 BreezyCore::make()
                     ->myProfile(
                         shouldRegisterUserMenu: true,
