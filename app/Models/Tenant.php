@@ -21,7 +21,7 @@ class Tenant extends Model
     protected function casts(): array
     {
         return [
-            'status'  => TenantStatus::class,
+            'status' => TenantStatus::class,
         ];
     }
 
