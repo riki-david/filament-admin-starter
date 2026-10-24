@@ -60,7 +60,7 @@ class EditTenantProfile extends BaseEditTenantProfile
                     ->maxLength(20),
 
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email ')
                     ->email()
                     ->maxLength(255),
 

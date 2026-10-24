@@ -28,7 +28,7 @@ class TenantForm
                     ->maxLength(20),
 
                 TextInput::make('email')
-                    ->label('Email Address')
+                    ->label('Email ')
                     ->email()
                     ->maxLength(255),
 

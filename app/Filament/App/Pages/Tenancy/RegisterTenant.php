@@ -36,7 +36,7 @@ class RegisterTenant extends BaseRegisterTenant
                     ->maxLength(20),
 
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email ')
                     ->email()
                     ->maxLength(255),
 
