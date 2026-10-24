@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Tenants\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,7 +17,29 @@ class TenantsTable
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name')
+                    ->label('Tenant Name')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('phone_number')
+                    ->label('Phone Number')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('users.name')
+                    ->label('User')
+                    ->badge()
+                    ->placeholder('-')
+                    ->searchable(),
+
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
                     ->searchable()
                     ->sortable(),
 
@@ -38,6 +61,7 @@ class TenantsTable
                 //
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

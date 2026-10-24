@@ -36,8 +36,9 @@ class UsersTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('tenant.name')
+                TextColumn::make('tenants.name')
                     ->label('Tenant')
+                    ->badge()
                     ->searchable()
                     ->sortable(),
 

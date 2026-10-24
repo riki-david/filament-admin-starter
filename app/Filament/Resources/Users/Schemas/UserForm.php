@@ -66,9 +66,10 @@ class UserForm
                     ->revealable()
                     ->dehydrated(fn($state) => !empty($state)),
 
-                Select::make('tenant_id')
+                Select::make('tenants')
                     ->label('Tenant')
-                    ->relationship('tenant', 'name')
+                    ->relationship('tenants', 'name')
+                    ->multiple()
                     ->searchable()
                     ->preload(),
 

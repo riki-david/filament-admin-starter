@@ -12,7 +12,15 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
+            $table->string('slug', 63)->unique();
+            $table->text('address')->nullable();
+            $table->string('phone_number', 20)->nullable();
+            $table->string('email')->nullable();
+            $table->string('timezone', 40)->default('Asia/Jakarta');
+            $table->string('status', 20)->default('active');
             $table->timestamps();
+
+            $table->index(['status']);
         });
     }
 

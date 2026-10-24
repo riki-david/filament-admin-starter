@@ -100,6 +100,7 @@ class AdminPanelProvider extends PanelProvider
                         scopeToPanel: true,
                     )
                     ->avatarUploadComponent(fn() => AvatarPicker::make('avatar_url')->label('Avatar')),
+                FacehashPlugin::make(),
                 FilamentBackgroundsPlugin::make()
                     // ->showAttribution(false)
                     // ->imageProvider(MyImages::make()->directory('images/backgrounds'))
@@ -108,11 +109,9 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationGroup('Settings')
                     ->navigationSort(94)
                     ->authorize(fn(): bool => Auth::user()?->can('View:Backups') ?? false),
-                FacehashPlugin::make(),
             ])
             ->defaultAvatarProvider(FacehashProvider::class)
             ->sidebarCollapsibleOnDesktop()
-            ->sidebarWidth('16rem')
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s');
     }
