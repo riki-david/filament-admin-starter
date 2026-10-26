@@ -17,7 +17,6 @@
         "marjose123/filament-lockscreen": "*",
         "matondojk/filament-avatar-picker": "^4.0",
         "saade/filament-facehash": "^1.0",
-        "shuvroroy/filament-spatie-laravel-backup": "^4.0",
         "stechstudio/filament-impersonate": "^5.6",
         "swisnl/filament-backgrounds": "^2.0"
     },

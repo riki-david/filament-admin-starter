@@ -18,16 +18,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Illuminate\Support\Facades\Storage;
 use App\Observers\UserObserver;
-use Filament\Models\Contracts\HasTenants;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
 
 #[Fillable(['name', 'email', 'password', 'avatar_url', 'uuid', 'username'])]
 #[Hidden(['password', 'remember_token'])]
 #[ObservedBy(UserObserver::class)]
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasTenants
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasRoles, HasPublicUuid, HasApiTokens, TwoFactorAuthenticatable;
@@ -47,21 +43,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasTenant
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return match ($panel->getId()) {
-            'admin' => $this->hasAnyRole(['super_admin', 'admin']),
-            'app'   => $this->tenants()->where('status', 'active')->exists(),
-            default => false,
-        };
-    }
-
-    public function getTenants(Panel $panel): Collection
-    {
-        return $this->tenants()->where('status', 'active')->get();
-    }
-
-    public function canAccessTenant(Model $tenant): bool
-    {
-        return $this->tenants->contains($tenant);
+        return true;
     }
 
     public function getFilamentAvatarUrl(): ?string
@@ -77,10 +59,5 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasTenant
     public function canBeImpersonated(): bool
     {
         return ! $this->hasRole('super_admin');
-    }
-
-    public function tenants(): BelongsToMany
-    {
-        return $this->belongsToMany(Tenant::class)->withTimestamps();
     }
 }
